@@ -9,27 +9,18 @@ class ListItem extends React.Component {
 
   render () {
     const item = this.props.item;
-    if(item.isDone) {
+    // if(item.isDone) {
         return (
             <li 
               className={item.isDone ? 'checked' : ''} 
-              onClick={() => this.props.customClickEvent(this.props.index)}>
-              <Check/>
+              onClick={(event) => { this.props.customClickEvent(item)}}>
+              { (item.isDone) && <Check/> }
               {item.name}
-              <Delete onClick={() => this.props.deletItem(this.props.index)}/>
+              <Delete 
+                onClick={(event) =>{ this.props.deletItem(item)}}/>
             </li>
         )
-    } else {
-        return (
-            <li 
-              className={item.isDone ? 'checked' : ''} 
-              onClick={() => this.props.customClickEvent(this.props.index)}>
-              {item.name}
-              <Delete/>
-            </li>
-          )
-    }
-    
+    // } else {
   };
 }
 
